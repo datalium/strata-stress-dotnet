@@ -2,12 +2,12 @@
 
 One project per scenario, numbered as in [SCENARIOS.md](../SCENARIOS.md). CI runs every `NN-*/` folder here with `--quick`.
 
-| # | Folder | Ticket | Status |
-|:--|:--|:--|:--|
-| 1 | [`01-burst/`](01-burst/) | [STR-97](https://datalium.atlassian.net/browse/STR-97) | Built |
-| 2 | [`02-million-sleepers/`](02-million-sleepers/) | [STR-98](https://datalium.atlassian.net/browse/STR-98) | Built |
-| 3 | [`03-kill-mid-storm/`](03-kill-mid-storm/) | [STR-99](https://datalium.atlassian.net/browse/STR-99) | Built |
-| 4 | [`04-durable-firehose/`](04-durable-firehose/) | [STR-100](https://datalium.atlassian.net/browse/STR-100) | Built |
+| # | Folder | Status |
+|:--|:--|:--|
+| 1 | [`01-burst/`](01-burst/) | Built |
+| 2 | [`02-million-sleepers/`](02-million-sleepers/) | Built |
+| 3 | [`03-kill-mid-storm/`](03-kill-mid-storm/) | Built |
+| 4 | [`04-durable-firehose/`](04-durable-firehose/) | Built |
 
 ## Adding a scenario
 

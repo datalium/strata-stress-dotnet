@@ -21,7 +21,7 @@ dotnet run -c Release --project scenarios/01-burst -- --quick
 
 ## Rules every scenario follows
 
-- **It follows the spec.** The graph, the state, the latencies, the sizes and the JSON keys are [SCENARIOS.md](SCENARIOS.md)'s. A change to any of them changes the spec, here and in [`strata-stress-rust`](https://github.com/datalium/strata-stress-rust), in the same way.
+- **It follows the spec.** The graph, the state, the latencies, the sizes and the JSON keys are [SCENARIOS.md](SCENARIOS.md)'s. A change to any of them changes the spec, here and in the Rust twin, `strata-stress-rust`, in the same way.
 - **It checks its own claim.** A scenario exits non-zero when a check fails. Checks are about correctness; how fast it ran is a result, never a check.
 - **Its numbers are real.** A figure in a README or in `RESULTS.md` comes from a run, with the machine, the runtime versions, the Strata version and the date. A `--quick` run measures nothing.
 - **It runs offline.** Every model call is simulated. Postgres on the same machine is the only service.

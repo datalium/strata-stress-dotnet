@@ -6,12 +6,11 @@ Guidance for Claude Code when working in this repository.
 
 .NET stress demos for [Datalium Strata](https://github.com/datalium/strata): four scenarios that put the
 framework under extreme workloads and measure it (burst, million sleepers, kill it mid-storm, durable
-firehose). [SCENARIOS.md](SCENARIOS.md) is the spec, shared with the Rust twin `strata-stress-rust-preview`;
+firehose). [SCENARIOS.md](SCENARIOS.md) is the spec, shared with the Rust twin `strata-stress-rust`;
 [README.md](README.md) says how to run them.
 
-This is the private preview repository (`datalium/strata-stress-dotnet-preview`). The finished code moves to
-a fresh `datalium/strata-stress-dotnet`, which is then made public (STR-102). Write everything as if it
-were already public: no secrets, no internal links in code or JSON, no host names.
+This repository is public. Nothing in it names a secret, an internal link (code, docs or JSON) or a
+host name.
 
 The scenarios build from Strata's **published NuGet packages** (`Datalium.Strata`, `.Storage`), not from
 a source checkout. Versions are set once, in `Directory.Packages.props` (central package management;
@@ -19,9 +18,6 @@ Strata's share `$(StrataVersion)`, `0.9.0-preview.2`), and a project's `.csproj`
 `<PackageReference>`s. `nuget.config` restores from nuget.org only. `Directory.Build.props` holds the
 settings every number depends on (.NET 10, server GC); `global.json` opts `dotnet test` into
 Microsoft.Testing.Platform.
-
-Jira: epic STR-93 in the `STR` space. STR-95 is the spec, STR-96 this scaffold, STR-97 to STR-100 the
-four scenarios, STR-101 the measured `RESULTS.md`.
 
 ## Conventions to follow
 

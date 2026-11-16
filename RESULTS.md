@@ -12,6 +12,7 @@ The four scenarios of [SCENARIOS.md](SCENARIOS.md), measured at full size on one
 - **Linux:** Ubuntu 24.04.5 in a container ([`linux/Dockerfile`](linux/Dockerfile): `mcr.microsoft.com/dotnet/sdk:10.0`, pinned by digest, SDK 10.0.404 and the same .NET 10.0.15), with the same build settings. It ran in Docker Desktop 29.9.3's WSL 2 VM on the same machine: kernel 6.18.58.1-microsoft-standard-WSL2, 24 virtual CPUs, 62.7 GiB. **It is not Linux on bare metal**: it is a VM that Windows schedules, with half the machine's memory.
 - **Postgres:** 16.15 (`postgres:16-alpine`) from [`docker-compose.yml`](docker-compose.yml), data on tmpfs, `max_connections` 300, in the same VM. Restarted, empty, before every run of scenarios 2 to 4. The Windows process reaches it through Docker Desktop's forwarded port (`localhost:5432`); the Linux container over the compose network, inside the VM.
 - **Not a quiet machine.** A development session was open throughout. Nothing else heavy ran on purpose, but the slowest percentiles carry whatever did.
+- **The machine under load:** [a Task Manager screenshot](results/task-manager-windows.png), taken on Windows during these runs.
 
 Windows' timer ticks every 15.6 ms unless something raises its resolution; nothing in the scenarios does. Linux's timers are high-resolution.
 
@@ -183,7 +184,7 @@ Each is open against Strata `0.9.0-preview.2`. When one is closed, the figures i
 
 ## What it doesn't show
 
-- **The Rust engine.** The Rust twin implements the same spec ([STR-94](https://datalium.atlassian.net/browse/STR-94)) and isn't built yet. Its figures come next to these, on the same machine.
+- **The Rust engine.** The Rust twin, `strata-stress-rust`, implements the same spec and isn't built yet. Its figures come next to these, on the same machine.
 - **Linux on bare metal**, or Postgres on a machine of its own (see the noise above).
 - **A store on disk.** Postgres keeps its data on tmpfs, so a commit's fsync costs almost nothing. On a disk, every checkpoint waits for one, and group commit, which shares a commit among many saves, would gain more than it does here.
 - **A real model.** Every model call is a timer of a seeded latency (SCENARIOS.md, "The simulated model"). A provider's latency, errors and rate limits aren't in it.
