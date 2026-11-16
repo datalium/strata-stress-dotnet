@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- What every scenario shares (SCENARIOS.md, "Common rules"): the command line, the simulated model,
+       the payload, percentiles, memory samples, the machine, Postgres, child processes, and the JSON and
+       Markdown report. -->
+  <PropertyGroup>
+    <RootNamespace>Datalium.Strata.Stress.Harness</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!-- Only to name the Strata version a run used, from the assembly the scenario loaded. -->
+    <PackageReference Include="Datalium.Strata" />
+    <!-- For the Postgres the scenarios share, and Npgsql with it: the client version the store itself uses. -->
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <InternalsVisibleTo Include="Strata.Stress.Harness.Tests" />
+  </ItemGroup>
+
+</Project>

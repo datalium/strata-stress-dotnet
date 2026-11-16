@@ -1,0 +1,22 @@
+<Project>
+
+  <!-- Central package management: every package version the scenarios use is set here, once.
+       The scenarios build from Strata's published NuGet packages (https://www.nuget.org/packages/Datalium.Strata),
+       not from a source checkout. Change StrataVersion to move every scenario to another Strata release, and
+       measure again: RESULTS.md names the version its numbers came from. -->
+  <PropertyGroup>
+    <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    <StrataVersion>0.9.0-preview.2</StrataVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageVersion Include="Datalium.Strata" Version="$(StrataVersion)" />
+    <PackageVersion Include="Datalium.Strata.Storage" Version="$(StrataVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- The harness's tests, on Microsoft.Testing.Platform (global.json opts dotnet test into it). -->
+    <PackageVersion Include="xunit.v3" Version="4.0.3" />
+  </ItemGroup>
+
+</Project>

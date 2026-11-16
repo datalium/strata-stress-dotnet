@@ -1,0 +1,41 @@
+03-kill-mid-storm: 200,000 orders, 3 kill(s), 256 in flight per worker
+03-kill-mid-storm (worker-0): starting
+03-kill-mid-storm: killed worker-0 at 50,091 completed; 171 orphans (listed in 119.5 ms); starting worker-1
+03-kill-mid-storm (worker-1): starting
+03-kill-mid-storm: killed worker-1 at 100,007 completed; 179 orphans (listed in 91.2 ms); starting worker-2
+03-kill-mid-storm (worker-2): starting
+03-kill-mid-storm: killed worker-2 at 150,023 completed; 138 orphans (listed in 83.7 ms); starting worker-3
+03-kill-mid-storm (worker-3): starting
+03-kill-mid-storm (worker-3): every order completed
+03-kill-mid-storm: checking every order
+
+## 03-kill-mid-storm: Strata 0.9.0-preview.2, .NET 10.0.15, 12th Gen Intel(R) Core(TM) i9-12900KF, 24 logical cores
+
+| Kill | Completed at kill | Orphans | First recovered ms | All recovered ms |
+|---:|---:|---:|---:|---:|
+| 1 | 50,091 | 171 | 2,346 | 43,311 |
+| 2 | 100,007 | 179 | 2,463 | 57,850 |
+| 3 | 150,023 | 138 | 2,480 | 61,091 |
+
+- `orders`: 200,000
+- `kills`: 3
+- `lost`: 0
+- `duplicate_charges`: 0
+- `charges`: 200,000
+- `charge_attempts`: 200,169
+- `recovered_node_runs`: 488
+- `lease_ttl_ms`: 2,000
+- `wall_s`: 226
+- `orders_per_s`: 884
+- `timer_late_p50_ms`: 1.01
+- `timer_late_p99_ms`: 11.8
+
+Checks: 6 passed, 0 failed.
+- PASS no order lost: every thread completed, with exactly one completed checkpoint
+- PASS no order charged twice, and every order charged
+- PASS every order's Charge runs used one idempotency key, the ledger's
+- PASS every order's final charge_id is the ledger's
+- PASS every kill left at least one orphan
+- PASS no lease left held
+
+JSON: results/windows/03-kill-mid-storm-3.json

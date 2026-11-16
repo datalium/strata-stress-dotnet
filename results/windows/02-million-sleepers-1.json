@@ -1,0 +1,123 @@
+{
+  "format": "strata-stress/1",
+  "scenario": "02-million-sleepers",
+  "quick": false,
+  "seed": 1,
+  "started_at": "2026-11-16T13:17:30.160Z",
+  "finished_at": "2026-11-16T13:59:01.927Z",
+  "environment": {
+    "engine": "dotnet",
+    "strata_version": "0.9.0-preview.2",
+    "runtime": ".NET 10.0.15",
+    "os": "Microsoft Windows 10.0.26300",
+    "cpu": "12th Gen Intel(R) Core(TM) i9-12900KF",
+    "logical_cores": 24,
+    "memory_bytes": 137243189248,
+    "gc": "server, Interactive",
+    "build": "release"
+  },
+  "parameters": {
+    "threads": 1000000,
+    "in_flight": 256,
+    "milestones": [
+      0,
+      10000,
+      100000,
+      1000000
+    ],
+    "warmup": 1000,
+    "latency_min_ms": 1,
+    "latency_max_ms": 5,
+    "postgres_version": "16.15",
+    "group_commit": "on",
+    "group_commit_max_batch": 256,
+    "group_commit_max_flushes": 4,
+    "pool_size": 100
+  },
+  "rows": [
+    {
+      "suspended": 0,
+      "resident_bytes": 107495424,
+      "store_bytes": 3964928
+    },
+    {
+      "suspended": 10000,
+      "resident_bytes": 129384448,
+      "store_bytes": 23904256
+    },
+    {
+      "suspended": 100000,
+      "resident_bytes": 147648512,
+      "store_bytes": 196993024
+    },
+    {
+      "suspended": 1000000,
+      "resident_bytes": 137097216,
+      "store_bytes": 1905180672
+    }
+  ],
+  "summary": {
+    "threads": 1000000,
+    "suspend_per_s": 7574.93648133594,
+    "resident_per_thread_bytes": 7.790674747474747,
+    "store_per_thread_bytes": 1900.279208080808,
+    "checkpoint_bytes": 1329,
+    "list_s": 567.6875544,
+    "resume_per_s": 10395.88388700061,
+    "resume_process_resident_bytes": 125796352
+  },
+  "checks": [
+    {
+      "name": "after phase 1, the store lists every thread waiting at the boundary, and no other",
+      "passed": true
+    },
+    {
+      "name": "phase 2 listed every waiting thread, and no other",
+      "passed": true
+    },
+    {
+      "name": "every resume completed",
+      "passed": true
+    },
+    {
+      "name": "every resolution is right",
+      "passed": true
+    },
+    {
+      "name": "after phase 2, no thread waits at the boundary",
+      "passed": true
+    },
+    {
+      "name": "after phase 2, the store lists every thread as resumed",
+      "passed": true
+    }
+  ],
+  "engine_specific": {
+    "milestones": [
+      {
+        "suspended": 0,
+        "managed_heap_bytes": 5513968,
+        "private_bytes": 76214272
+      },
+      {
+        "suspended": 10000,
+        "managed_heap_bytes": 9475040,
+        "private_bytes": 95617024
+      },
+      {
+        "suspended": 100000,
+        "managed_heap_bytes": 10516088,
+        "private_bytes": 111611904
+      },
+      {
+        "suspended": 1000000,
+        "managed_heap_bytes": 10802768,
+        "private_bytes": 100802560
+      }
+    ],
+    "managed_heap_per_thread_bytes": 1.3411393939393939,
+    "private_per_thread_bytes": 5.237915151515152,
+    "resume_process_managed_heap_bytes": 5915400,
+    "resume_process_private_bytes": 87166976
+  }
+}

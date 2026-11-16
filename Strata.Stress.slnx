@@ -1,0 +1,14 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Strata.Stress.Harness/Strata.Stress.Harness.csproj" />
+  </Folder>
+  <Folder Name="/scenarios/">
+    <Project Path="scenarios/01-burst/01-burst.csproj" />
+    <Project Path="scenarios/02-million-sleepers/02-million-sleepers.csproj" />
+    <Project Path="scenarios/03-kill-mid-storm/03-kill-mid-storm.csproj" />
+    <Project Path="scenarios/04-durable-firehose/04-durable-firehose.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Strata.Stress.Harness.Tests/Strata.Stress.Harness.Tests.csproj" />
+  </Folder>
+</Solution>

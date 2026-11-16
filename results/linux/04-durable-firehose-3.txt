@@ -1,0 +1,45 @@
+04-durable-firehose: 8 configurations × 3 repeat(s), 5 s warm-up and 20 s measured each
+04-durable-firehose: repeat 0, 16 at once, group commit off: 2,477 checkpoints/s, 225 runs/s, 5,608 runs; counts took 4 and 11 ms; checked in 0.3 s
+04-durable-firehose: repeat 0, 16 at once, group commit on: 2,397 checkpoints/s, 218 runs/s, 5,457 runs; counts took 2 and 8 ms; checked in 0.3 s
+04-durable-firehose: repeat 0, 64 at once, group commit off: 8,213 checkpoints/s, 747 runs/s, 18,710 runs; counts took 10 and 51 ms; checked in 0.8 s
+04-durable-firehose: repeat 0, 64 at once, group commit on: 8,173 checkpoints/s, 743 runs/s, 18,765 runs; counts took 5 and 27 ms; checked in 0.8 s
+04-durable-firehose: repeat 0, 256 at once, group commit off: 10,418 checkpoints/s, 947 runs/s, 23,899 runs; counts took 33 and 204 ms; checked in 1.1 s
+04-durable-firehose: repeat 0, 256 at once, group commit on: 21,897 checkpoints/s, 1,990 runs/s, 50,671 runs; counts took 18 and 119 ms; checked in 1.7 s
+04-durable-firehose: repeat 0, 1024 at once, group commit off: 10,342 checkpoints/s, 940 runs/s, 24,416 runs; counts took 30 and 184 ms; checked in 0.9 s
+04-durable-firehose: repeat 0, 1024 at once, group commit on: 43,255 checkpoints/s, 3,934 runs/s, 101,116 runs; counts took 52 and 216 ms; checked in 3.2 s
+04-durable-firehose: repeat 1, 16 at once, group commit off: 2,476 checkpoints/s, 225 runs/s, 5,646 runs; counts took 3 and 18 ms; checked in 0.2 s
+04-durable-firehose: repeat 1, 16 at once, group commit on: 2,414 checkpoints/s, 220 runs/s, 5,504 runs; counts took 3 and 7 ms; checked in 0.2 s
+04-durable-firehose: repeat 1, 64 at once, group commit off: 8,249 checkpoints/s, 750 runs/s, 18,814 runs; counts took 8 and 71 ms; checked in 0.8 s
+04-durable-firehose: repeat 1, 64 at once, group commit on: 8,329 checkpoints/s, 757 runs/s, 19,038 runs; counts took 6 and 37 ms; checked in 0.8 s
+04-durable-firehose: repeat 1, 256 at once, group commit off: 10,359 checkpoints/s, 942 runs/s, 23,874 runs; counts took 35 and 168 ms; checked in 0.8 s
+04-durable-firehose: repeat 1, 256 at once, group commit on: 21,774 checkpoints/s, 1,979 runs/s, 50,154 runs; counts took 16 and 92 ms; checked in 1.6 s
+04-durable-firehose: repeat 1, 1024 at once, group commit off: 10,130 checkpoints/s, 922 runs/s, 23,553 runs; counts took 29 and 140 ms; checked in 1.0 s
+04-durable-firehose: repeat 1, 1024 at once, group commit on: 38,509 checkpoints/s, 3,502 runs/s, 90,665 runs; counts took 63 and 200 ms; checked in 3.1 s
+04-durable-firehose: repeat 2, 16 at once, group commit off: 2,481 checkpoints/s, 226 runs/s, 5,654 runs; counts took 3 and 8 ms; checked in 0.3 s
+04-durable-firehose: repeat 2, 16 at once, group commit on: 2,386 checkpoints/s, 217 runs/s, 5,439 runs; counts took 2 and 7 ms; checked in 0.2 s
+04-durable-firehose: repeat 2, 64 at once, group commit off: 8,082 checkpoints/s, 734 runs/s, 18,427 runs; counts took 10 and 64 ms; checked in 0.8 s
+04-durable-firehose: repeat 2, 64 at once, group commit on: 8,065 checkpoints/s, 734 runs/s, 18,553 runs; counts took 4 and 39 ms; checked in 0.9 s
+04-durable-firehose: repeat 2, 256 at once, group commit off: 9,241 checkpoints/s, 841 runs/s, 21,619 runs; counts took 16 and 161 ms; checked in 1.0 s
+04-durable-firehose: repeat 2, 256 at once, group commit on: 21,697 checkpoints/s, 1,973 runs/s, 50,067 runs; counts took 24 and 92 ms; checked in 1.7 s
+04-durable-firehose: repeat 2, 1024 at once, group commit off: 10,198 checkpoints/s, 922 runs/s, 23,552 runs; counts took 26 and 159 ms; checked in 1.1 s
+04-durable-firehose: repeat 2, 1024 at once, group commit on: 44,553 checkpoints/s, 4,048 runs/s, 104,071 runs; counts took 56 and 246 ms; checked in 3.3 s
+
+## 04-durable-firehose: Strata 0.9.0-preview.2, .NET 10.0.15, 12th Gen Intel(R) Core(TM) i9-12900KF, 24 logical cores
+
+| Runs at once | Group commit | Checkpoints/s (min–max) | Runs/s | Run P50 ms | Run P99 ms | Checkpoints' cost P50 ms | Checkpoints' cost P99 ms | Timer late P50 ms | Timer late P99 ms |
+|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|
+| 16 | off | 2,477 (2,476–2,481) | 225 | 71.5 | 91.8 | 16.5 | 19.4 | -0.56 | 2.20 |
+| 16 | on | 2,397 (2,386–2,414) | 218 | 72.9 | 95.5 | 20.0 | 26.4 | -0.71 | 2.78 |
+| 64 | off | 8,213 (8,082–8,249) | 747 | 85.7 | 112 | 31.7 | 42.0 | -0.67 | 3.41 |
+| 64 | on | 8,173 (8,065–8,329) | 743 | 85.6 | 112 | 30.6 | 39.3 | -0.52 | 3.30 |
+| 256 | off | 10,359 (9,241–10,418) | 942 | 275 | 382 | 210 | 309 | 0.41 | 5.83 |
+| 256 | on | 21,774 (21,697–21,897) | 1,979 | 129 | 160 | 71.3 | 90.7 | -0.23 | 3.22 |
+| 1,024 | off | 10,198 (10,130–10,342) | 922 | 1,097 | 1,261 | 1,031 | 1,193 | 0.42 | 5.99 |
+| 1,024 | on | 43,255 (38,509–44,553) | 3,934 | 264 | 365 | 203 | 301 | -0.18 | 8.36 |
+
+Checks: 3 passed, 0 failed.
+- PASS every run completed
+- PASS every completed thread has exactly eleven checkpoints, the last completed with step 10
+- PASS the store holds no other checkpoint: eleven rows for each run started
+
+JSON: results/linux/04-durable-firehose-3.json

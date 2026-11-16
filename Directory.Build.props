@@ -1,0 +1,15 @@
+<Project>
+
+  <!-- Settings every project shares. A scenario's numbers depend on these, so they live in one place and
+       RESULTS.md can name them: .NET 10, server GC (as datalium/strata's benchmarks ran), tiered PGO on (the default). -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+    <ServerGarbageCollection>true</ServerGarbageCollection>
+    <ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+    <TieredPGO>true</TieredPGO>
+    <InvariantGlobalization>true</InvariantGlobalization>
+  </PropertyGroup>
+
+</Project>

@@ -1,0 +1,201 @@
+{
+  "format": "strata-stress/1",
+  "scenario": "01-burst",
+  "quick": false,
+  "seed": 1,
+  "started_at": "2026-11-16T11:25:04.443Z",
+  "finished_at": "2026-11-16T11:25:29.464Z",
+  "environment": {
+    "engine": "dotnet",
+    "strata_version": "0.9.0-preview.2",
+    "runtime": ".NET 10.0.15",
+    "os": "Ubuntu 24.04.5 LTS",
+    "cpu": "12th Gen Intel(R) Core(TM) i9-12900KF",
+    "logical_cores": 24,
+    "memory_bytes": 67327930368,
+    "gc": "server, Interactive",
+    "build": "release"
+  },
+  "parameters": {
+    "runs": [
+      1000,
+      10000,
+      100000,
+      1000000
+    ],
+    "latency_min_ms": 20,
+    "latency_max_ms": 80,
+    "control_runs": 10000,
+    "warmup": 1000
+  },
+  "rows": [
+    {
+      "runs": 1000,
+      "latency_min_ms": 20,
+      "latency_max_ms": 80,
+      "model_calls": 10000,
+      "wall_s": 0.239264076,
+      "start_spread_ms": 0.253002,
+      "runs_per_s": 4179.482422593185,
+      "model_calls_per_s": 41794.82422593186,
+      "run_p50_ms": 174.570492,
+      "run_p90_ms": 214.451932,
+      "run_p99_ms": 230.513133,
+      "run_p999_ms": 239.1713,
+      "run_max_ms": 239.210402,
+      "overhead_p50_us": 445.463,
+      "overhead_p99_us": 7660.291,
+      "overhead_p999_us": 11423.725,
+      "overhead_max_us": 11467.221,
+      "timer_late_p50_ms": 0.9444879999999998,
+      "timer_late_p99_ms": 11.605191000000001,
+      "peak_resident_bytes": 74977280
+    },
+    {
+      "runs": 10000,
+      "latency_min_ms": 20,
+      "latency_max_ms": 80,
+      "model_calls": 100000,
+      "wall_s": 0.54399807,
+      "start_spread_ms": 15.664312,
+      "runs_per_s": 18382.41815821148,
+      "model_calls_per_s": 183824.1815821148,
+      "run_p50_ms": 377.180179,
+      "run_p90_ms": 469.183688,
+      "run_p99_ms": 516.591766,
+      "run_p999_ms": 529.460073,
+      "run_max_ms": 540.79853,
+      "overhead_p50_us": 11563.537,
+      "overhead_p99_us": 291859.339,
+      "overhead_p999_us": 293857.776,
+      "overhead_max_us": 306322.528,
+      "timer_late_p50_ms": 54.304052000000006,
+      "timer_late_p99_ms": 106.898236,
+      "peak_resident_bytes": 300695552
+    },
+    {
+      "runs": 100000,
+      "latency_min_ms": 20,
+      "latency_max_ms": 80,
+      "model_calls": 1000000,
+      "wall_s": 2.724628191,
+      "start_spread_ms": 120.883368,
+      "runs_per_s": 36702.25549684919,
+      "model_calls_per_s": 367022.55496849184,
+      "run_p50_ms": 2404.290008,
+      "run_p90_ms": 2669.733924,
+      "run_p99_ms": 2696.37714,
+      "run_p999_ms": 2698.221304,
+      "run_max_ms": 2699.083003,
+      "overhead_p50_us": 1072819.524,
+      "overhead_p99_us": 1195185.846,
+      "overhead_p999_us": 1197300.548,
+      "overhead_max_us": 1389354.208,
+      "timer_late_p50_ms": 570.925937,
+      "timer_late_p99_ms": 733.93998,
+      "peak_resident_bytes": 2294321152
+    },
+    {
+      "runs": 1000000,
+      "latency_min_ms": 20,
+      "latency_max_ms": 80,
+      "model_calls": 10000000,
+      "wall_s": 18.526351329,
+      "start_spread_ms": 805.493266,
+      "runs_per_s": 53977.16918142765,
+      "model_calls_per_s": 539771.6918142765,
+      "run_p50_ms": 17909.114697,
+      "run_p90_ms": 18346.919566,
+      "run_p99_ms": 18488.716075,
+      "run_p999_ms": 18501.112303,
+      "run_max_ms": 18502.376607,
+      "overhead_p50_us": 2281609.133,
+      "overhead_p99_us": 3764209.345,
+      "overhead_p999_us": 3772500.252,
+      "overhead_max_us": 4681442.663,
+      "timer_late_p50_ms": 7209.054847,
+      "timer_late_p99_ms": 9279.890817,
+      "peak_resident_bytes": 27917950976
+    },
+    {
+      "runs": 10000,
+      "latency_min_ms": 0,
+      "latency_max_ms": 0,
+      "model_calls": 100000,
+      "wall_s": 0.010355044,
+      "start_spread_ms": 1.416395,
+      "runs_per_s": 965712.9414418711,
+      "model_calls_per_s": 9657129.414418712,
+      "run_p50_ms": 4.903749,
+      "run_p90_ms": 7.985879,
+      "run_p99_ms": 8.636889,
+      "run_p999_ms": 8.721111,
+      "run_max_ms": 9.159069,
+      "overhead_p50_us": 4903.671,
+      "overhead_p99_us": 8636.819,
+      "overhead_p999_us": 8720.998,
+      "overhead_max_us": 9158.984,
+      "peak_resident_bytes": 27720056832
+    }
+  ],
+  "summary": {},
+  "checks": [
+    {
+      "name": "every run completed",
+      "passed": true
+    },
+    {
+      "name": "every answer is right",
+      "passed": true
+    }
+  ],
+  "engine_specific": {
+    "rows": [
+      {
+        "runs": 1000,
+        "latency_min_ms": 20,
+        "latency_max_ms": 80,
+        "allocated_bytes_per_run": 31378.984,
+        "gen0_collections": 3,
+        "gen1_collections": 1,
+        "gen2_collections": 0
+      },
+      {
+        "runs": 10000,
+        "latency_min_ms": 20,
+        "latency_max_ms": 80,
+        "allocated_bytes_per_run": 32196.0912,
+        "gen0_collections": 13,
+        "gen1_collections": 5,
+        "gen2_collections": 3
+      },
+      {
+        "runs": 100000,
+        "latency_min_ms": 20,
+        "latency_max_ms": 80,
+        "allocated_bytes_per_run": 31220.81248,
+        "gen0_collections": 46,
+        "gen1_collections": 13,
+        "gen2_collections": 4
+      },
+      {
+        "runs": 1000000,
+        "latency_min_ms": 20,
+        "latency_max_ms": 80,
+        "allocated_bytes_per_run": 31302.846168,
+        "gen0_collections": 91,
+        "gen1_collections": 40,
+        "gen2_collections": 2
+      },
+      {
+        "runs": 10000,
+        "latency_min_ms": 0,
+        "latency_max_ms": 0,
+        "allocated_bytes_per_run": 18953.012,
+        "gen0_collections": 0,
+        "gen1_collections": 0,
+        "gen2_collections": 0
+      }
+    ]
+  }
+}

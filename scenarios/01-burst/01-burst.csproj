@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <!-- Scenario 1, Burst (SCENARIOS.md, "1. Burst"). Directory.Build.props sets the framework and the GC. -->
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <RootNamespace>Datalium.Strata.Stress.Burst</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Datalium.Strata" />
+    <PackageReference Include="Datalium.Strata.Storage" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Strata.Stress.Harness\Strata.Stress.Harness.csproj" />
+  </ItemGroup>
+
+</Project>

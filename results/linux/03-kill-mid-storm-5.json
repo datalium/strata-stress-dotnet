@@ -1,0 +1,117 @@
+{
+  "format": "strata-stress/1",
+  "scenario": "03-kill-mid-storm",
+  "quick": false,
+  "seed": 1,
+  "started_at": "2026-11-16T11:58:54.966Z",
+  "finished_at": "2026-11-16T12:01:33.945Z",
+  "environment": {
+    "engine": "dotnet",
+    "strata_version": "0.9.0-preview.2",
+    "runtime": ".NET 10.0.15",
+    "os": "Ubuntu 24.04.5 LTS",
+    "cpu": "12th Gen Intel(R) Core(TM) i9-12900KF",
+    "logical_cores": 24,
+    "memory_bytes": 67327930368,
+    "gc": "server, Interactive",
+    "build": "release"
+  },
+  "parameters": {
+    "orders": 200000,
+    "kills": 3,
+    "in_flight": 256,
+    "lease_ttl_ms": 2000,
+    "recover_interval_ms": 250,
+    "latency_min_ms": 5,
+    "latency_max_ms": 20,
+    "postgres_version": "16.15",
+    "group_commit": "off",
+    "pool_size": 100
+  },
+  "rows": [
+    {
+      "kill": 1,
+      "completed_at_kill": 50112,
+      "orphans": 169,
+      "first_recovered_ms": 2480.1671,
+      "all_recovered_ms": 27574.5465
+    },
+    {
+      "kill": 2,
+      "completed_at_kill": 100036,
+      "orphans": 136,
+      "first_recovered_ms": 2416.1438,
+      "all_recovered_ms": 38878.9125
+    },
+    {
+      "kill": 3,
+      "completed_at_kill": 150111,
+      "orphans": 160,
+      "first_recovered_ms": 2377.8587,
+      "all_recovered_ms": 40973.4401
+    }
+  ],
+  "summary": {
+    "orders": 200000,
+    "kills": 3,
+    "lost": 0,
+    "duplicate_charges": 0,
+    "charges": 200000,
+    "charge_attempts": 200145,
+    "recovered_node_runs": 465,
+    "lease_ttl_ms": 2000,
+    "wall_s": 150.24688933,
+    "orders_per_s": 1331.1423676847182,
+    "timer_late_p50_ms": 0.502,
+    "timer_late_p99_ms": 6.966
+  },
+  "checks": [
+    {
+      "name": "no order lost: every thread completed, with exactly one completed checkpoint",
+      "passed": true
+    },
+    {
+      "name": "no order charged twice, and every order charged",
+      "passed": true
+    },
+    {
+      "name": "every order's Charge runs used one idempotency key, the ledger's",
+      "passed": true
+    },
+    {
+      "name": "every order's final charge_id is the ledger's",
+      "passed": true
+    },
+    {
+      "name": "every kill left at least one orphan",
+      "passed": true
+    },
+    {
+      "name": "no lease left held",
+      "passed": true
+    }
+  ],
+  "engine_specific": {
+    "recovery_passes": 58,
+    "recovery_pass_p50_ms": 1254.641326,
+    "recovery_pass_max_ms": 16435.606476,
+    "idle_recovery_passes": 52,
+    "idle_recovery_pass_p50_ms": 1250.41482,
+    "idle_recovery_pass_p99_ms": 3253.876669,
+    "recovered_by_passes": 465,
+    "skipped_by_passes": 5552,
+    "orphan_listing_ms": [
+      117.223376,
+      73.223643,
+      86.497237
+    ],
+    "orphans_seen_completed_unreported": 2,
+    "model_calls_reported": 599835,
+    "worker_exit_codes": [
+      137,
+      137,
+      137,
+      0
+    ]
+  }
+}

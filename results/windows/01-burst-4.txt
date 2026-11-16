@@ -1,0 +1,21 @@
+01-burst: row 0, 1,000 runs, model latency 20–80 ms
+01-burst: row 1, 10,000 runs, model latency 20–80 ms
+01-burst: row 2, 100,000 runs, model latency 20–80 ms
+01-burst: row 3, 1,000,000 runs, model latency 20–80 ms
+01-burst: row 4, 10,000 runs, model latency none
+
+## 01-burst: Strata 0.9.0-preview.2, .NET 10.0.15, 12th Gen Intel(R) Core(TM) i9-12900KF, 24 logical cores
+
+| Runs | Model latency | Wall s | Runs/s | Run P50 ms | Run P99 ms | Run P99.9 ms | Overhead P50 µs | Overhead P99 µs | Overhead P99.9 µs | Timer late P99 ms | Start spread ms | Peak resident MiB |
+|---:|:---|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|---:|
+| 1,000 | 20–80 ms | 0.26 | 3,857 | 197 | 244 | 259 | 431 | 11,561 | 11,945 | 15.8 | 0.23 | 67.7 |
+| 10,000 | 20–80 ms | 0.34 | 29,216 | 264 | 327 | 340 | 1,599 | 11,720 | 40,216 | 72.4 | 17.5 | 331 |
+| 100,000 | 20–80 ms | 1.87 | 53,438 | 1,608 | 1,824 | 1,836 | 558,684 | 659,582 | 660,171 | 460 | 92.8 | 2,774 |
+| 1,000,000 | 20–80 ms | 15.7 | 63,628 | 15,106 | 15,690 | 15,694 | 2,006,990 | 3,124,515 | 3,129,224 | 6,613 | 812 | 26,787 |
+| 10,000 | none | 0.01 | 776,156 | 5.61 | 11.9 | 12.0 | 5,605 | 11,877 | 11,954 |  | 1.48 | 25,379 |
+
+Checks: 2 passed, 0 failed.
+- PASS every run completed
+- PASS every answer is right
+
+JSON: results/windows/01-burst-4.json
