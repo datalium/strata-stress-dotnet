@@ -1,8 +1,8 @@
 # Stress scenarios: the spec
 
-**Status:** Draft, version 0.6, 2026-11-15. **Ticket:** [STR-95](https://datalium.atlassian.net/browse/STR-95). **Framework:** `0.9.0-preview.2`. **Output format:** `strata-stress/1`.
+**Status:** Draft, version 0.7, 2026-11-16. **Framework:** `0.9.0-preview.2`. **Output format:** `strata-stress/1`.
 
-The one spec both stress demos implement: this repository (.NET, [STR-93](https://datalium.atlassian.net/browse/STR-93)) and `strata-stress-rust-preview` (Rust, [STR-94](https://datalium.atlassian.net/browse/STR-94)). It lives here first and is copied there. **The two copies stay identical:** a change lands in both repositories, as a pair of pull requests, and moves the version above.
+The one spec both stress demos implement: this repository (.NET) and its Rust twin, `strata-stress-rust`. It lives here first and is copied there. **The two copies stay identical:** a change lands in both repositories, as a pair of pull requests, and moves the version above.
 
 The sizes and latencies below are targets, not measurements. They are settled after the first measured run (see [Open questions](#open-questions)), and until then every one of them may move.
 
@@ -261,7 +261,7 @@ Per row:
 
 ### Reference
 
-`benchmarks/RESULTS.md`: a run's setup costs about 0.2 µs in .NET and 0.9 µs in Rust; a branch of a parallel group about 0.6 µs and 1.5 µs. The Rust demo's ticket asks for the branch cost to be explained, not hidden ([STR-107](https://datalium.atlassian.net/browse/STR-107)).
+`benchmarks/RESULTS.md`: a run's setup costs about 0.2 µs in .NET and 0.9 µs in Rust; a branch of a parallel group about 0.6 µs and 1.5 µs. The Rust demo is to explain the branch cost, not hide it.
 
 ## 2. Million sleepers
 
@@ -559,7 +559,7 @@ The second reads each thread's log through the store (`GetLogAsync`, `get_log`),
 
 ### Reference
 
-`benchmarks/RESULTS.md`, 64 workers each running the same ten-node line with no latency, against Postgres: 8,860 checkpoints a second in .NET without group commit and 15,438 with it; 6,952 and 19,527 in Rust. It also reports that the .NET group commit varies from run to run (5,900 to 16,200 saves a second with 64 writers, cause unknown), which is why this scenario repeats and reports a range ([STR-100](https://datalium.atlassian.net/browse/STR-100)).
+`benchmarks/RESULTS.md`, 64 workers each running the same ten-node line with no latency, against Postgres: 8,860 checkpoints a second in .NET without group commit and 15,438 with it; 6,952 and 19,527 in Rust. It also reports that the .NET group commit varies from run to run (5,900 to 16,200 saves a second with 64 writers, cause unknown), which is why this scenario repeats and reports a range.
 
 ## What must be the same in both engines
 
@@ -577,7 +577,7 @@ What may differ: the code, the engine's idioms (a `ValueTask` or a `Future`), `e
 
 ## Open questions
 
-To settle after the first measured run of scenario 1 ([STR-97](https://datalium.atlassian.net/browse/STR-97)), and the first of each other scenario:
+To settle after the first measured run of scenario 1, and the first of each other scenario:
 
 | Question | Draft answer |
 |:--|:--|
@@ -595,6 +595,7 @@ To settle after the first measured run of scenario 1 ([STR-97](https://datalium.
 | 0.1 | 2026-11-14 | First draft |
 | 0.2 | 2026-11-14 | Scenario 1: a run that completes under `Boundaries` writes no checkpoint, so the burst writes nothing to the store and its overhead has no final checkpoint. A fourth row of 1,000,000 runs, since the first three took seconds. Its `parameters` keys, and `--control-runs 0`. What `timer_late_*` includes: the handler's wait for a thread after its timer fires. Open questions on how scenario 1 starts a run, and on scenario 2's policy (for the same reason as the first change) |
 | 0.3 | 2026-11-14 | Scenario 1 hands each run to the thread pool (`Task.Run`, `tokio::spawn`), so both engines start runs the same way and the control row uses every core. Scenario 2 keeps `Boundaries` and checks the resumes' results, not the store, for the resolution; the store check is `resumed` threads. Both open questions are closed |
+| 0.4 | 2026-11-14 | Scenario 2: the warm-up's thread ids, and the last check counts the warm-up's `resumed` threads apart from the sleepers. Its `parameters` keys, and the store's keys every Postgres scenario shares. No `timer_late_*`, and why. Pages of 1,000, the four tables the store's size sums, which checkpoint `checkpoint_bytes` measures, and phase 2's memory sample after it lets go of its list. The checks list through the store's listing. The `tmpfs` question is closed: the first full run's store fit (scenario 2's README has the run). A new open question on the listing's time |
 | 0.5 | 2026-11-15 | Scenario 3: the store (group commit off), no warm-up, its `parameters` keys. Each node appends its attempt first, before its model call. The worker's recovery passes don't overlap, what its completed count counts, and it reports when each recovery completed. A kill waits for the previous kill's orphans as well, the orphans are listed once the process has exited, and how `completed_at_kill` and the recovery times are measured. `timer_late_*` in its summary, as the common rules ask. `--orders` from 20,000 to 200,000: in the first measured runs, `RecoverStaleAsync` recovered a kill's 150 orphans one at a time, at a run's latency under load (about 300 ms, Postgres-bound), so a recovery took 20 to 40 s ([datalium/strata#39](https://github.com/datalium/strata/issues/39)), and with 20,000 orders the next worker finished every order before the next kill could land |
 | 0.6 | 2026-11-15 | Scenario 4: the run number (`n × concurrency + worker`, from 0 in each configuration and repeat), what `config` is in a thread id, the order of the configurations, and its `parameters` keys, where `group_commit` is the list. How the window counts rows, which runs `runs_per_s_median` and the latency figures count, that the store is checked before the next configuration empties it, and a third check, that the store holds no other checkpoint. `--repeats` from 5 to 3 and `--measure-s` from 30 to 20: in the first three measured runs a full run took 24.5 minutes, and the five repeats of each configuration agreed to within 10% at most configurations |
-| 0.4 | 2026-11-14 | Scenario 2: the warm-up's thread ids, and the last check counts the warm-up's `resumed` threads apart from the sleepers. Its `parameters` keys, and the store's keys every Postgres scenario shares. No `timer_late_*`, and why. Pages of 1,000, the four tables the store's size sums, which checkpoint `checkpoint_bytes` measures, and phase 2's memory sample after it lets go of its list. The checks list through the store's listing. The `tmpfs` question is closed: the first full run's store fit (scenario 2's README has the run). A new open question on the listing's time |
+| 0.7 | 2026-11-16 | No workload change. The spec names the Rust twin by its public name, `strata-stress-rust`, and links no tickets |

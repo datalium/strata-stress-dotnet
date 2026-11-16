@@ -6,7 +6,7 @@ Stress demos for [Datalium Strata](https://github.com/datalium/strata) in .NET: 
 
 ## The scenarios
 
-Four scenarios, each making one claim and checking it. [SCENARIOS.md](SCENARIOS.md) is the spec: the graphs, the state, the simulated latency, the sizes, what is measured and the output. The Rust twin, [`strata-stress-rust`](https://github.com/datalium/strata-stress-rust), implements the same spec, so the two compare.
+Four scenarios, each making one claim and checking it. [SCENARIOS.md](SCENARIOS.md) is the spec: the graphs, the state, the simulated latency, the sizes, what is measured and the output. The Rust twin, `strata-stress-rust` (not public yet), implements the same spec, so the two will compare.
 
 | # | Scenario | The claim | Status |
 |:--|:--|:--|:--|
@@ -54,6 +54,7 @@ A run prints a Markdown table and writes the same figures as JSON. It exits with
 ```
 strata-stress-dotnet/
 ├── SCENARIOS.md              # the spec both stress demos implement
+├── RESULTS.md                # the measured runs, Windows and Linux, and what they show
 ├── Strata.Stress.slnx        # solution
 ├── Directory.Packages.props  # every package version, Strata's included (central package management)
 ├── Directory.Build.props     # .NET 10, server GC: the settings the numbers depend on
@@ -62,6 +63,8 @@ strata-stress-dotnet/
 ├── src/
 │   └── Strata.Stress.Harness/  # what every scenario shares: options, simulated model, payload, percentiles, Postgres, report
 ├── scenarios/                # one project per scenario: 01-burst/, 02-million-sleepers/, ...
+├── results/                  # every run behind RESULTS.md: its JSON and its output, windows/ and linux/
+├── linux/                    # the container RESULTS.md's Linux runs used
 └── tests/
     └── Strata.Stress.Harness.Tests/
 ```
@@ -79,5 +82,5 @@ A scenario's `.csproj` names the packages it needs, without a version. [`nuget.c
 ## Related
 
 - [datalium/strata](https://github.com/datalium/strata): the framework, its design docs and `benchmarks/RESULTS.md`, the microbenchmarks these scenarios put under load
-- [strata-stress-rust](https://github.com/datalium/strata-stress-rust): the Rust twin of this repository, on the same spec
+- `strata-stress-rust` (not public yet): the Rust twin of this repository, on the same spec
 - [strata-demos-dotnet](https://github.com/datalium/strata-demos-dotnet): one demo per feature, from minimal to real-world
