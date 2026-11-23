@@ -6,7 +6,7 @@
        measure again: RESULTS.md names the version its numbers came from. -->
   <PropertyGroup>
     <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
-    <StrataVersion>0.9.0-preview.2</StrataVersion>
+    <StrataVersion>0.9.0-preview.3</StrataVersion>
   </PropertyGroup>
 
   <ItemGroup>
