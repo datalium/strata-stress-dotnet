@@ -2,7 +2,7 @@
 
 Stress demos for [Datalium Strata](https://github.com/datalium/strata) in .NET: the agentic AI orchestration framework under extreme workloads. Concurrent bursts, a million suspended threads, a worker killed under load and durable checkpoints to Postgres, each measured and reproducible with one command. Built from the published `Datalium.Strata` **0.9** packages (`0.9.0-preview.2`) on [nuget.org](https://www.nuget.org/packages/Datalium.Strata). Scripted models, no API keys.
 
-> **Preview.** Strata is at `0.9.0-preview.2`, and so are these numbers: they will be measured again before 1.0.
+> **Measured on `0.9.0-preview.2`.** Strata's current version is `0.9.0`, a stable release. These numbers, and the packages this repository builds from, are still `0.9.0-preview.2`. Four issues came out of them (datalium/strata#37–#40); `0.9.0-preview.3` fixed three, and the fourth was this repository's own timer.
 
 ## The scenarios
 
